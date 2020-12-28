@@ -1,0 +1,8 @@
+
+https://github.com/kmpm/nodemcu-uploader/blob/master/doc/USAGE.md
+
+sudo /home/mirek/.local/bin/esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 0x10000 bin/0x10000.bin --erase-all
+
+V=2 make
+
+https://nodemcu.readthedocs.io/en/release/build/
