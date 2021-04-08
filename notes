@@ -1,8 +1,32 @@
-
+https://roboindia.com/tutorials/ds18b20-temp-sensor-nodemcu/
 https://github.com/kmpm/nodemcu-uploader/blob/master/doc/USAGE.md
+
+sudo /home/mirek/.local/bin/nodemcu-uploader terminal
+exit -> Ctrl+]
 
 sudo /home/mirek/.local/bin/esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 0x10000 bin/0x10000.bin --erase-all
 
 V=2 make
 
 https://nodemcu.readthedocs.io/en/release/build/
+
+
+tmp:
+
+https://nodemcu.readthedocs.io/en/release/modules/ow/#owwrite
+https://www.esp8266.com/viewtopic.php?f=6&t=8066&start=4
+https://github.com/nodemcu/nodemcu-firmware/tree/master/lua_modules/ds18b20
+
+https://github.com/zettajs/zetta/wiki/Overview
+https://nodered.org/docs/getting-started/local
+
+złącze U.FL do podłączenia anteny zewnętrznej
+
+https://github.com/nateGeorge/nodemcu-localTime/blob/master/ntp.lua
+https://msr-nodemcu.readthedocs.io/en/latest/modules/rtctime/#rtctimeget
+
+
+
+
+
+
