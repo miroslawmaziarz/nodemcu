@@ -4,12 +4,19 @@ https://github.com/kmpm/nodemcu-uploader/blob/master/doc/USAGE.md
 sudo /home/mirek/.local/bin/nodemcu-uploader terminal
 exit -> Ctrl+]
 
-sudo /home/mirek/.local/bin/esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 0x10000 bin/0x10000.bin --erase-all
+sudo /home/mirek/.local/bin/esptool.py
+sudo esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 0x10000 bin/0x10000.bin --erase-all
 
 V=2 make
 
 https://nodemcu.readthedocs.io/en/release/build/
 
+Deployment ID: AKfycbxez4AeeZmGxF3QG7RSnjuXRUn3LAdbuk6wnzOeyc7aknCQOs9h2CNB0JIDN014JoYZ1Q
+URL: https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?value=Temperature
+
+https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?name=szklarnia&p1=21&p2=3&p3=43
+
+https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec
 
 tmp:
 
@@ -25,8 +32,33 @@ złącze U.FL do podłączenia anteny zewnętrznej
 https://github.com/nateGeorge/nodemcu-localTime/blob/master/ntp.lua
 https://msr-nodemcu.readthedocs.io/en/latest/modules/rtctime/#rtctimeget
 
+const char* host = "script.google.com";
+const char *GScriptId = "enter your GSCript ID here"; // Replace with your own google script id
+const int httpsPort = 443; //the https port is same
+
+require 'net/http'
+require 'net/https'
+
+uri = URI.parse("https://script.google.com/macros/s/AKfycbxez4AeeZmGxF3QG7RSnjuXRUn3LAdbuk6wnzOeyc7aknCQOs9h2CNB0JIDN014JoYZ1Q/exec")
+https = Net::HTTP.new(uri.host,uri.port)
+https.use_ssl = true
+req = Net::HTTP::Post.new(uri.path)
+req['value'] = 'Temperature,3'
+req['command'] = 'appendRow'
+req['sheet_name'] = 'tunel'
+res = https.request(req)
+puts res.body
 
 
+https://www.electronics-lab.com/project/iot-log-sensor-data-google-sheet-using-nodemcu/
 
+https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?name=szklarnia&p1=23&p2=32
+
+
+Google docs:
+Cieplarka
+  Dev ID: 1TjLO5ZJGrhFd20wjn-XTysD7ggQjulXzzqEidkloRVY
+  url:    https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec
+  test:   https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?temperature=1&humidity=33
 
 

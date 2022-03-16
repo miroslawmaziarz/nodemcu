@@ -16,7 +16,9 @@ end
 -- Define WiFi station event callbacks
 wifi_connect_event = function(T)
   print("Connection to AP("..T.SSID..") established!")
+  print("Signal Strength: "..wifi.sta.getrssi())
   print("Waiting for IP address...")
+  
   if disconnect_ct ~= nil then disconnect_ct = nil end
 end
 

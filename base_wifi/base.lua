@@ -3,10 +3,13 @@
 dofile("credentials.lua")
 
 is_wifi_ready = false
+wifi_ready_callback = function() 
+end
 
 -- Define WiFi station event callbacks
 wifi_connect_event = function(T)
   print("Connection to AP("..T.SSID..") established!")
+  print("Signal Strength: "..wifi.sta.getrssi())
   print("Waiting for IP address...")
   if disconnect_ct ~= nil then disconnect_ct = nil end
 end
@@ -16,6 +19,7 @@ wifi_got_ip_event = function(T)
   -- Internet connectivity can be determined with net.dns.resolve().
   print("Wifi connection is ready! IP address is: "..T.IP)
   is_wifi_ready = true
+  wifi_ready_callback()
   -- tmr.create():alarm(3000, tmr.ALARM_SINGLE, startup)
 end
 

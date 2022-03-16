@@ -1,4 +1,3 @@
-
 -- interval_ms, cycle_num, cycle_limit = 500, 0, 120
 -- function cycle_body()
 -- end
