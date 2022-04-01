@@ -7,11 +7,11 @@
 
 local function cycle_func(t)
   cycle_num = cycle_num + 1
-  print("cycle num: "..cycle_num)
+  print("cycle num: " .. cycle_num)
 
   cycle_body()
 
-  if cycle_num > cycle_limit then
+  if cycle_limit ~= -1 and cycle_num > cycle_limit then
     cycle_finish()
     print("Unregister")
     t:unregister()

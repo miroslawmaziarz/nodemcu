@@ -22,34 +22,6 @@ function http_get(host, path)
   srv:connect(443, host)
 end
 
-function test()
-  print('HTTPS ------ test --------')
-  tls.setDebug(4)
-  tls.cert.verify(false)
-  srv = tls.createConnection()
-  srv:on("receive", function(sck, c) print(c) end)
-  srv:on("connection", function(sck, c)
-    -- Wait for connection before sending.
-    sck:send("GET / HTTP/1.1\r\nHost: google.com\r\nConnection: keep-alive\r\nAccept: */*\r\n\r\n")
-  end)
-  srv:connect(443,"google.com")
-end
-
-function test2()
-  print('HTTPS ------ test 2 --------')
-  --tls.cert.verify(false)
-
-  tls.setDebug(4)
-  tls.cert.verify(false)
-  http.get("https://google.com", nil, function(code, data)
-    if (code < 0) then
-      print("HTTP request failed")
-    else
-      print(code, data)
-    end
-  end)
-end
-
 -- data: { name: 'szklarnia', p1: 24, p2: 12 } 
 local function build_url(name, data)
   local url = 'https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?'

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/home/mirek/.local/bin/nodemcu-uploader upload init.lua ../base_cycle/base.lua:base_cycle.lua ds18b20.lua
+/home/mirek/.local/bin/nodemcu-uploader upload init.lua ../base_cycle/base.lua:base_cycle.lua
