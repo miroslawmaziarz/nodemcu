@@ -1,9 +1,10 @@
-print('heap ' .. node.heap())
 local t = require("ds18b20")
-print('heap ' .. node.heap())
+-- print('heap ' .. node.heap())
 dofile("wifi.lua")
-print('heap ' .. node.heap())
 gsheets = require('gsheets')
+
+local ow_pin = 4 -- gpio0 = 3, gpio2 = 4
+local pompa_pin = 1 
 
 interval_ms, cycle_num, cycle_limit = 5 * 60 * 1000, 0, -1
 
@@ -11,10 +12,6 @@ wifi_ready_callback = function()
   print("!!! wifi ready !!!!")
   read_sensors()
 end
-
-print('heap ' .. node.heap())
-local t = require("ds18b20")
-local pin = 4 -- gpio0 = 3, gpio2 = 4
 
 local function readout(temp)
   if t.sens then
@@ -42,7 +39,7 @@ local function readout(temp)
 end
 
 function read_sensors()
-  return t:read_temp(readout, pin, t.C)
+  return t:read_temp(readout, ow_pin, t.C)
 end
 
 function cycle_body()

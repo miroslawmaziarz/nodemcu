@@ -5,22 +5,50 @@
 -- function cycle_finish()
 -- end
 
-local function cycle_func(t)
-  cycle_num = cycle_num + 1
-  print("cycle num: " .. cycle_num)
+local cycle = {}
+
+function cycle.callback(t)
+  cycle.counter = cycle.counter + 1
+  print("cycle counter: " .. cycle.counter)
+  print("cycle interval: " .. cycle.interval)
 
   cycle_body()
+  cycle.unregister_when_limit()
+end
 
-  if cycle_limit ~= -1 and cycle_num > cycle_limit then
+function cycle.init(interval, limit)
+  cycle.interval = interval
+  cycle.limit = limit or -1
+  cycle.counter = 0
+
+  cycle.timer = tmr.create()
+  cycle.timer:register(cycle.interval, tmr.ALARM_AUTO, cycle.callback)
+  cycle.timer:start()
+end
+
+function cycle.unregister()
+  cycle.timer:unregister()
+end
+
+function cycle.unregister_when_limit()
+  if cycle.cycle_limit ~= -1 and cycle.counter >= cycle.limit then
     cycle_finish()
     print("Unregister")
-    t:unregister()
+    cycle.unregister()
   end
 end
 
-mytimer = tmr.create()
-mytimer:register(interval_ms, tmr.ALARM_AUTO, cycle_func)
-mytimer:start()
+function cycle.change_interval(interval)
+  cycle.interval = interval
+  cycle.timer:interval(interval)
+end
 
--- =mytimer:unregister()
+function cycle.inspect()
+  return {
+    interval  = cycle.interval,
+    limit     = cycle.limit,
+    counter   = cycle.counter
+  }
+end
 
+return cycle

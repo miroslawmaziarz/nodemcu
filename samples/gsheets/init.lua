@@ -25,3 +25,6 @@ function cycle_finish()
 end
 
 --dofile('cycle.lua')
+
+function dd()
+end

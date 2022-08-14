@@ -2,7 +2,7 @@ require "http"
 require "encoder"
 
 local gsheets = {};
-local STEROWANIE_SCRYPT_URL = "https://script.google.com/macros/s/AKfycbziG8nEBsodnCTuQufsyVPuKQvWfezjqbaNYPvvTbxI/dev";
+local STEROWANIE_SCRYPT_URL = "https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec"
 
 local function callback(status_code, body)
 end
@@ -26,7 +26,7 @@ end
 
 -- data: { p1: 24, p2: 12 } 
 local function build_url(data)
-  local url = STEROWANIE_SCRYPT_URL + '?'
+  local url = STEROWANIE_SCRYPT_URL .. '?'
 
   local idx = 0 -- first param is name
   for key,value in pairs(data) do
@@ -74,7 +74,8 @@ function gsheets.send_data(name, data)
   -- print(http_get('script.google.com', url))
 end
 
-function gsheets.getSwitchOptions(data)
+function gsheets.getSwitchOptions(getOptsCallback)
+  data = data or {}
   data['actionName'] = 'getSwitchOptions';
   local script_url = build_url(data)
   print(script_url)
@@ -90,6 +91,7 @@ function gsheets.getSwitchOptions(data)
       -- print(code, data)
       print(code)
       print(data)
+      getOptsCallback(sjson.decoder():write(data))
     end
   end)
 
