@@ -5,7 +5,7 @@ sudo /home/mirek/.local/bin/nodemcu-uploader terminal
 exit -> Ctrl+]
 
 sudo /home/mirek/.local/bin/esptool.py
-sudo esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 0x10000 bin/0x10000.bin --erase-all
+sudo esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 0x10000 bin/0x10000.bin --erase-all/
 
 V=2 make
 
@@ -57,6 +57,8 @@ https://www.electronics-lab.com/project/iot-log-sensor-data-google-sheet-using-n
 
 https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?name=szklarnia&p1=23&p2=32
 
+https://script.google.com/macros/s/AKfycbxcFHJdNbVDg8hkJsD6AHLhqKizwR0QbjRHgvem8LvN8owXs2yNZKUus07F5T4V9Xp2RA/exec?name=szklarnia&p1=23&p2=32
+
 https://script.google.com/macros/s/AKfycbziG8nEBsodnCTuQufsyVPuKQvWfezjqbaNYPvvTbxI/dev?actionName=getSwitchOptions
 
 https://script.google.com/macros/s/AKfycbziG8nEBsodnCTuQufsyVPuKQvWfezjqbaNYPvvTbxI/dev?actionName=setSwitchOptions&name=state&value=completed
@@ -75,7 +77,7 @@ pomidory:
 mam głównie 3 odmiany 1. Glacjery szwedzkie (lodowce) najszybsze (owocują już 100 dni od POSIANIA wielkość małego jajka oblepione owocami) tylko do gruntu 2. Malinowe własna odmiana i dzika róża stara mołdawska- śr 600g skórka sama odchodzi - niebo w gębie , ŁAMACZE KRZAKÓW jak obrodzi 3 paliki mało 3. moneymaker angielskie - późne - rosnąc w zaciemnieniu przechowują się do listopada (i carski podarok z 1889 roku lub korona cara - wolno rosnące , niewysokie pierwsze grono tworzy koronę owoców 8-15 sztuk średnia waga 200g - malinowe , czerwone , lekko kwaskowate)
 
 
-
+https://www.sklepfolie.pl/index-t-1662650547-data.html
 
 
 

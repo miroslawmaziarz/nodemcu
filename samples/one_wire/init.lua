@@ -1,7 +1,25 @@
-local t = require("ds18b20")
-local pin = 4 -- gpio0 = 3, gpio2 = 4
+inspectMemoryUsage = function(idx)
+  print("-----" .. idx .. "-----")
+  local heapSize=node.heap()
+  if heapSize<1000 then
+    node.restart()
+  end
+  print("Memory Used1:"..collectgarbage("count"))
+  collectgarbage()
+  print("Memory Used2:"..collectgarbage("count"))
+  print("Heap Available:"..heapSize)
+end
 
+node.compile("ds18b20-integer.lua")
+inspectMemoryUsage(0)
+
+--local t = require("ds18b20")
+local t = dofile("ds18b20-integer.lc")
+local pin = 3 -- gpio0 = 3, gpio2 = 4
+
+inspectMemoryUsage(1)
 local function readout(temp)
+inspectMemoryUsage(2)
   if t.sens then
     print("Total number of DS18B20 sensors: ".. #t.sens)
     for i, s in ipairs(t.sens) do
@@ -15,6 +33,7 @@ local function readout(temp)
   -- Module can be released when it is no longer needed
   t = nil
   package.loaded["ds18b20"] = nil
+
 end
 
 function read()
@@ -24,8 +43,3 @@ end
 mytimer = tmr.create()
 mytimer:register(6000, tmr.ALARM_AUTO, read)
 mytimer:start()
-
-
-
-
-

@@ -33,7 +33,7 @@ end
 function cycle.unregister_when_limit()
   if cycle.cycle_limit ~= -1 and cycle.counter >= cycle.limit then
     cycle_finish()
-    print("Unregister")
+    print("cycle - unregister")
     cycle.unregister()
   end
 end

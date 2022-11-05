@@ -77,33 +77,36 @@ end
 function gsheets.getSwitchOptions(getOptsCallback)
   data = data or {}
   data['actionName'] = 'getSwitchOptions';
+
+  return gsheets.executeQuery(data, getOptsCallback)
+end
+
+function gsheets.setSwitchOptions(data, setOptsCallback)
+  setOptsCallback = setOptsCallback or (function (data) end)
+  data['actionName'] = 'setSwitchOptions'
+
+  return gsheets.executeQuery(data, setOptsCallback)
+end
+
+function gsheets.executeQuery(data, callback)
   local script_url = build_url(data)
-  print(script_url)
+  --print(script_url)
   local url_b64 = encoder.toBase64(script_url)
 
   local url =  'http://nodemcu-http2https.herokuapp.com/propagate_https?url=' .. url_b64
-  print(url)
+  --print(url)
 
   http.get(url, nil, function(code, data)
     if (code < 0) then
       print("HTTP request failed")
     else
-      -- print(code, data)
-      print(code)
-      print(data)
-      getOptsCallback(sjson.decoder():write(data))
+      print(code, data)
+      callback(sjson.decoder():write(data))
     end
   end)
 
   print("sent")
   return "OK"
-  -- tls.setDebug(2)
-  -- http.get('http://www.faunaflora.com.pl/arch/2001/stycz/perliczki.php')
-  -- http.get('https://google.pl')
-  -- local url = build_url(name, data)
-  -- print(http_get('script.google.com', url))
 end
-
---function gsheets
 
 return gsheets

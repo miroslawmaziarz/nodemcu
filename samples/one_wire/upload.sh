@@ -1,3 +1,4 @@
 #!/bin/bash
 
-/home/mirek/.local/bin/nodemcu-uploader upload init.lua ../base_cycle/base.lua:base_cycle.lua
+/home/mirek/.local/bin/nodemcu-uploader upload --restart init.lua ../../utils/ds18b20.lua:ds18b20.lua ../../utils/cycle.lua:base_cycle.lua
+sudo /home/mirek/.local/bin/nodemcu-uploader terminal
