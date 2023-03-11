@@ -2,6 +2,7 @@ node.compile("ds18b20-integer.lua")
 node.compile("temperatureHandler.lua")
 node.compile("wifi.lua")
 node.compile("cycle.lua")
+node.compile("gsheets.lua")
 
 inspectMemoryUsage = function(idx)
   print("-----" .. idx .. "-----")
@@ -24,12 +25,12 @@ print(temperatureHandler)
 gsheets = dofile("gsheets.lc")
 
 getOptsCallback = function(data)
-  gsheets.switch_options = data
+  gsheets.control_options = data
 
-  local frequency = gsheets.switch_options['frequency']
+  local frequency = gsheets.control_options['frequency']
   cycle.change_interval(frequency * 1000 + 1)
 
-  switchHandler.loadNewOptions(gsheets.switch_options)
+  switchHandler.loadNewOptions(gsheets.control_options)
 end
 
 wifi_ready_callback = function()
@@ -43,7 +44,7 @@ function cycle_body()
     return
   end
 
-  --gsheets.getSwitchOptions(getOptsCallback)
+  gsheets.getControlOptions(getOptsCallback, node.ChipId)
 
   temperatureHandler.readAndStore()
 end

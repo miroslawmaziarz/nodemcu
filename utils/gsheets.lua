@@ -109,4 +109,14 @@ function gsheets.executeQuery(data, callback)
   return "OK"
 end
 
+function gsheets.getControlOptions(getOptsCallback, chipId = nil)
+  data = data or {}
+  data['actionName'] = 'getSwitchOptions';
+  data['chipId']     = chipId 
+
+  return gsheets.executeQuery(data, getOptsCallback)
+end
+
+
+
 return gsheets

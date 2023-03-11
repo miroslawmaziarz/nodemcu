@@ -10,7 +10,9 @@ sudo esptool.py --port /dev/ttyUSB0 write_flash -fm qio 0x00000 bin/0x00000.bin 
 V=2 make
 
 -------------------------------
-
+https://developers.google.com/apps-script/reference/spreadsheet/sheet#getRange(Integer,Integer,Integer)
+https://docs.google.com/spreadsheets/d/1TjLO5ZJGrhFd20wjn-XTysD7ggQjulXzzqEidkloRVY/edit#gid=1517223385
+---
 
 https://nodemcu.readthedocs.io/en/release/build/
 
